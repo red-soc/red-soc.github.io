@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"{% if page.layout == 'post' %} class="is-post"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <!-- theme: mode + accent colour from _config.yml; runs before first paint so there is no flash -->
+  <script>window.SITE_APPEARANCE = {{ site.appearance | jsonify }} || {};</script>
+  <script src="{{ '/assets/theme.js' | relative_url }}"></script>
+  <script>
+    /* restore sidebar / contents visibility before first paint (no flash) */
+    (function () {
+      var d = document.documentElement;
+      try {
+        if (localStorage.getItem('sidebar-hidden') === '1') {
+          d.classList.add('sidebar-hidden');
+          if (localStorage.getItem('sidebar-dismissed') === '1') d.classList.add('sidebar-dismissed');
+        }
+        if (localStorage.getItem('toc-hidden') !== '1' && window.matchMedia('(min-width: 1280px)').matches) d.classList.add('toc-open');
+      } catch (e) {
+        if (window.matchMedia('(min-width: 1280px)').matches) d.classList.add('toc-open');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <button class="nav-toggle" id="sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Hide sidebar" title="Hide sidebar">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <g class="ic-burger"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></g>
+      <g class="ic-panel" transform="translate(2 2)" stroke-width="1.7" stroke-linejoin="round"><rect x="2.5" y="3.5" width="15" height="13" rx="2.5"/><path d="M7.5 3.5v13"/><rect class="barfill" x="3" y="4" width="4" height="12" rx="1.5"/></g>
+      <g class="ic-chevron"><path d="M15 6l-6 6 6 6"/></g>
+      <g class="ic-arrow"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></g>
+      <g class="ic-dots" stroke-width="3"><path d="M6 12h.01"/><path d="M12 12h.01"/><path d="M18 12h.01"/></g>
+    </svg>
+    <span class="nav-toggle-text">Menu</span>
+  </button>
+
+  <div class="site">
+
+    <aside class="sidebar" id="sidebar">
+      <!-- Avatar, title and description are three separate pieces so each one can be aligned and placed
+           (top / bottom of the sidebar) on its own: appearance.sidebar in _config.yml. -->
+      <div class="brand">
+        {% assign avatar_src = site.appearance.avatar.image | default: '/assets/logo.svg' %}
+        {% capture avatar_url %}{% if avatar_src contains '://' %}{{ avatar_src }}{% else %}{{ avatar_src | prepend: '/' | replace: '//', '/' | relative_url }}{% endif %}{% endcapture %}
+        <a class="brand-logo-link" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}"><img class="brand-logo" src="{{ avatar_url }}" alt="{{ site.title }} logo"></a>
+        <a class="brand-title-link" href="{{ '/' | relative_url }}"><h1 class="site-title">{{ site.title }}</h1></a>
+        <p class="tagline">{{ site.description }}</p>
+      </div>
+
+      <!-- Sidebar menu: comes from  nav:  in _config.yml (add / delete items with  python tools/_Apps/Site_Conf/Site_Conf.py > Sidebar menu).
+           Icons come from _data/nav_icons.yml. -->
+      {%- assign sb_label = site.appearance.sidebar.label | strip | escape %}
+      <div class="side-menu">
+      <div class="side-label">{{ sb_label }}</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        {%- assign nav_items = site.nav -%}
+        {%- if nav_items == nil -%}{%- assign nav_items = site.data.nav_default -%}{%- endif -%}
+        {%- for item in nav_items -%}
+          {%- assign is_ext = false -%}
+          {%- if item.url contains '://' or item.url contains 'mailto:' -%}{%- assign is_ext = true -%}{%- endif -%}
+          {%- assign is_active = false -%}
+          {%- unless is_ext -%}
+            {%- if item.url == '/' -%}
+              {%- if page.url == '/' -%}{%- assign is_active = true -%}{%- endif -%}
+            {%- else -%}
+              {%- assign url_len = item.url | size -%}
+              {%- assign url_head = page.url | slice: 0, url_len -%}
+              {%- if url_head == item.url -%}{%- assign is_active = true -%}{%- endif -%}
+            {%- endif -%}
+          {%- endunless -%}
+          {%- assign icon_svg = site.data.nav_icons[item.icon] | default: site.data.nav_icons.link %}
+        <a href="{% if is_ext %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}" data-label="{{ item.title | escape }}"{% if is_active %} class="active" aria-current="page"{% endif %}{% if item.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icon_svg }}</svg>
+          <span>{{ item.title | escape }}</span>
+        </a>
+        {%- endfor %}
+      </nav>
+      </div>
+    </aside>
+    <!-- drag this edge to resize the sidebar (appearance.sidebar.resizable); behaviour lives in assets/layout-toggle.js -->
+    <!-- hidden-state handle (appearance.sidebar.hidden_style: strip / tab / avatar) and the invisible hover zone on the left edge
+         (hover_open / toggle_reveal). Only active while the sidebar is hidden. Behaviour: assets/layout-toggle.js -->
+    <button class="sb-hot" id="sb-hot" type="button" aria-label="Show sidebar" tabindex="-1">
+      <img class="sb-hot-img" src="{{ avatar_url }}" alt="">
+      <svg class="sb-hot-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="side-resizer" id="side-resizer" role="separator" aria-orientation="vertical" aria-label="Resize sidebar (double-click to reset)" tabindex="0"></div>
+
+    <main class="content">
+      <div class="content-inner">
+        {% if page.url == '/' %}
+          <div class="breadcrumb">Home</div>
+        {% elsif page.title %}
+          <div class="breadcrumb">
+            <a href="{{ '/' | relative_url }}">Home</a>
+            <span class="crumb-sep">/</span>
+            {% if page.layout == 'tag' %}
+              <a href="{{ '/tags/' | relative_url }}">Tags</a>
+              <span class="crumb-sep">/</span>
+            {% elsif page.layout == 'category' %}
+              <a href="{{ '/categories/' | relative_url }}">Categories</a>
+              <span class="crumb-sep">/</span>
+            {% endif %}
+            <span class="crumb-current">{{ page.title }}</span>
+          </div>
+        {% endif %}
+        {{ content }}
+      </div>
+    </main>
+
+  </div>
+
+  <!-- The ONE visitor theme button. assets/theme.js builds it from  appearance.theme_button  in _config.yml
+       (style: menu | toggle | cycle | switch, position, show). Colours are never editable by visitors. -->
+  <div class="settings" id="settings"></div>
+
+  <script src="{{ '/assets/search.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/layout-toggle.js' | relative_url }}" defer></script>
+  <!-- code windows (language label, copy button, line numbers) + back-to-top button; see  code:  and  to_top:  in _config.yml -->
+  <script src="{{ '/assets/extras.js' | relative_url }}" defer></script>
+</body>
+</html>

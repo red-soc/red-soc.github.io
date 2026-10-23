@@ -1,0 +1,262 @@
+title: "red-soc"
+description: ""
+url: "https://red-soc.github.io"
+github_username: "red-soc"
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+# Layouts are applied automatically from these scopes
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page
+
+# ------------------------------------------------------------
+# Appearance - YOU control the theme and colour from here.
+# Edit by hand, or run  python tools/_Apps/Site_Conf/Site_Conf.py  for a visual editor with live preview.
+# Visitors can only switch Light/Dark/System - colours are always yours.
+# ------------------------------------------------------------
+appearance:
+  mode: dark                  # default for new visitors: dark | light | system (follow their OS)
+  accent: "#b3202a"           # colour of links, hover highlights, pills, logo ring, TOC...
+  keep_text_readable: true    # true: link TEXT is lightened/darkened only if the accent is too
+                              #       dim to read (borders/fills keep your exact colour)
+                              # false: use the exact accent colour for text too
+  colors: {}                  # optional palette overrides per theme - written by tools/_Apps/Site_Conf/Site_Conf.py
+  sidebar:                              # Sidebar look (menu style, resize, hide button)
+    style: "panel"                      # panel = the look of the manager and configurator sidebars; the item options below apply to Panel  [panel | classic]
+    label: ""                           # for example Menu - max 24 characters
+    head_layout: "inline"               # side by side keeps all three at the top; the per-element positions below apply to Stacked  [stacked | inline | inline_right]
+    inline_avatar_size: 63              # Avatar size in Side by side layout (px)
+    align: "left"                       # Default alignment (avatar, title, description)  [center | left | right]
+    avatar_align: "auto"                # Avatar alignment  [auto | left | center | right]
+    title_align: "auto"                 # Title alignment  [auto | left | center | right]
+    tagline_align: "auto"               # Description alignment  [auto | left | center | right]
+    avatar_position: "top"              # Avatar position  [top | bottom]
+    title_position: "top"               # Title position  [top | bottom]
+    tagline_position: "top"             # Description position  [top | bottom]
+    show_title: true                    # Show the site title under the avatar
+    show_icons: true                    # Show menu icons
+    icon_size: 22                       # Icon size (px)
+    icon_gap: 13                        # Space between icon and text (px)
+    font_size: 15                       # Menu text size (px)
+    uppercase: true                     # UPPERCASE menu text
+    bold_active: true                   # Bold text on the current page
+    item_padding: 7                     # Item height - padding top/bottom (px)
+    item_gap: 2                         # Space between items (px)
+    item_radius: 14                     # Item corner radius (px)
+    active_style: "outline"             # Current page marker  [fill | accent | bar | outline]
+    show_check: false                   # Show a check mark on the current page
+    text_color: ""                      # blank = theme muted text colour
+    hover_bg: ""                        # blank = automatic
+    active_bg: ""                       # blank = automatic (depends on the marker)
+    active_color: ""                    # blank = automatic
+    divider: true                       # Line along the sidebar edge
+    resizable: false                    # Visitors can drag the sidebar edge to resize it
+    toggle_style: "arrow"               # Hide / show button: icon  [panel | burger | chevron | arrow | dots | menu_text | none]
+    toggle_look: "auto"                 # Hide / show button: look  [auto | ghost | outline | soft | solid | glass]
+    toggle_shape: "auto"                # Hide / show button: shape  [auto | square | rounded | circle | pill]
+    toggle_size: 33                     # 0 = automatic
+    toggle_position: "edge_middle"      # Hide / show button: position while the sidebar is open  [edge | inside | edge_middle]
+    toggle_reveal: "always"             # Hide / show button: when it is visible  [always | hover]
+    toggle_shortcut: true               # Ctrl+B hides / shows the sidebar
+    edge_hide: "drag"                   # with Drag, dragging the hidden-state handle to the right shows it again  [off | drag | click | both]
+    hidden_content: "wider"             # the page re-flows when the sidebar is hidden so no space is wasted  [same | wider | full]
+    hidden_style: "rail"                # What is shown when the sidebar is hidden  [none | rail | strip | tab | avatar]
+    rail_width: 65                      # Icon rail width (px)
+    rail_avatar: true                   # Icon rail: show the avatar on top
+    avatar_toggle: true                 # click the avatar to hide / show the sidebar; the separate button is not shown and the avatar appears even if it is switched off
+    rail_avatar_toggle: true            # click the avatar in the rail to open the sidebar (the separate button is not shown in the rail; the avatar is shown even if the option above is off)
+    rail_tooltips: true                 # Icon rail: show the page name when hovering an icon
+    rail_toggle: "above"                # Icon rail: where the hide / show button sits  [beside | above]
+    hover_open: "off"                   # Open the hidden sidebar when the mouse touches the left edge  [off | peek | open]
+    hover_delay: 150                    # Hover delay before it opens (ms)
+  avatar:                               # Avatar (sidebar picture)
+    show: true                          # Show avatar
+    image: "/assets/logo.svg"           # image path or URL
+    size: 196                           # Size (px)
+    shape: "rounded"                    # Shape  [circle | rounded | square]
+    border_color: ""                    # blank = accent colour
+    border_width: 2                     # Ring width (px)
+    background: "#000000"               # Background behind image
+  links:                                # Links
+    color: ""                           # blank = accent colour
+    hover_color: ""                     # blank = same as link
+    highlight_bg: ""                    # blank = accent colour
+    underline: "hover"                  # Underline links in text  [hover | always | never]
+  search:                               # Search
+    hit_bg: ""                          # blank = accent colour
+    hit_text: ""                        # blank = automatic contrast
+    focus_color: ""                     # blank = accent colour
+  pagination:                           # Pagination (home page page numbers)
+    per_page: 10                        # Posts per page
+    max_pages: 7                        # how many page numbers are visible before the … appears (7 = 1 … 4 5 6 … 20)
+    show_edges: true                    # Always show the first and last page
+    show_arrows: true                   # Show the previous / next arrows
+    show_info: false                    # Show "Page 2 of 9" text
+    align: "center"                     # Alignment  [left | center | right]
+    gap: 8                              # Space between buttons (px)
+    scroll_top: true                    # Scroll to the top when the page changes
+  buttons:                              # Buttons (style, size and behaviour)
+    variant: "outline"                  # Style  [outline | soft | solid | ghost | gradient | glow]
+    shape: "auto"                       # Shape  [auto | pill | rounded | square]
+    size: "medium"                      # Size  [small | medium | large | xlarge]
+    color: ""                           # blank = accent colour
+    border_width: 1                     # Border width (px)
+    shadow: "none"                      # Shadow  [none | soft | strong]
+    hover: "color"                      # Hover effect  [color | lift | grow | glow]
+  to_top:                               # Back-to-top button
+    show: true                          # appears when you are far from the top
+    style: "circle"                     # Shape  [circle | rounded | square | pill]
+    icon: "chevron"                     # Icon  [chevron | arrow | double]
+    label: "Top"                        # only used by the pill shape
+    position: "bottom-right"            # Position  [bottom-right | bottom-left | bottom-center]
+    show_after: 400                     # Show after scrolling (px)
+    behavior: "always"                  # When to show  [always | scroll_up]
+    show_on: "all"                      # Pages  [all | posts]
+    progress: false                     # Reading-progress ring
+    smooth: true                        # Smooth scroll
+    offset_x: 20                        # Distance from the side (px)
+    offset_y: 24                        # Distance from the bottom (px)
+    color: ""                           # blank = same as buttons
+  theme_button:                         # Theme button (one button for visitors)
+    show: true                          # false = hidden, visitors always get your default
+    style: "menu"                       # Button style  [menu | toggle | cycle | switch]
+    position: "bottom-left"             # Position  [bottom-left | bottom-right]
+    hide_with_sidebar: false            # true = the theme button disappears when a visitor hides the sidebar, and returns when it is shown
+  article:                              # Article (tables, headings, quotes, images)
+    table_style: "grid"                 # Table style  [grid | striped | lines | minimal | boxed]
+    table_header: "subtle"              # Table header  [subtle | accent | solid | plain]
+    table_density: "normal"             # Cell spacing  [compact | normal | relaxed]
+    table_font_size: 15                 # Table text size (px)
+    table_align: "left"                 # Cell text alignment  [left | center]
+    table_first_bold: false             # First column bold
+    table_hover: false                  # Highlight row on hover
+    table_scroll: true                  # Scroll wide tables sideways
+    table_nowrap: false                 # Keep each row on one line (scrolls)
+    table_radius: 10                    # Boxed table style only
+    heading_style: "plain"              # Section headings (h2)  [plain | underline | bar]
+    heading_color: "default"            # Heading colour  [default | accent]
+    inline_code: "box"                  # Inline code style  [box | pill | accent | plain]
+    blockquote: "bar"                   # Quote style  [bar | card | accent | minimal]
+    list_marker: "default"              # List bullets  [default | accent]
+    image_radius: 0                     # Image corner radius (px)
+    image_border: false                 # Image border
+    image_shadow: false                 # Image shadow
+    paragraph_gap: 100                  # Paragraph spacing (100 = one line)
+    justify: false                      # Justify paragraph text
+    meta_date: true                     # Show date in post headers
+    meta_categories: true               # Show categories in post headers
+    meta_tags: true                     # Show tags in post headers
+  archive:                              # Archive page (and tag / category post lists)
+    row_style: "lines"                  # Row style  [lines | cards | zebra | compact | minimal | bordered | timeline]
+    row_radius: 0                       # rounds the hover highlight, cards and zebra rows
+    date_format: "iso"                  # Date format  [iso | short | long | dmy]
+    date_position: "left"               # Date position  [left | right | hidden]
+    date_font: "mono"                   # Date font  [mono | sans]
+    date_color: ""                      # blank = faint text colour
+    title_weight: "normal"              # Title weight  [normal | medium | bold]
+    title_color: ""                     # blank = normal text colour
+    font_size: 17                       # Title size (px)
+    row_padding: 15                     # Row spacing (px)
+    col_gap: 24                         # Space between date and title (px)
+    show_excerpt: false                 # Show a short excerpt under each title
+    show_arrow: false                   # Show an arrow at the end of each row
+    show_category: false                # Show category in each row
+    cat_style: "pill"                   # Category label style  [pill | outline | soft | text]
+    group_by_year: false                # Group by year (year headings)
+    year_style: "line"                  # Year heading style  [line | plain | bar | pill]
+    year_size: 22                       # Year heading size (px)
+    year_count: false                   # Show post count next to the year
+    hover: "highlight"                  # Hover effect  [highlight | underline | slide | bar | none]
+  taxonomy:                             # Tags and category links (style)
+    tag_style: "box"                    # Tag style (Tags page)  [box | pill | outline | soft | hash | plain]
+    tag_size: "medium"                  # Tag size  [small | medium | large]
+    tag_color: ""                       # blank = neutral
+    tag_count: true                     # Show post count on tags
+    tag_align: "left"                   # Tag alignment  [left | center]
+    cat_style: "card"                   # Category list style (Categories page)  [card | plain | compact]
+    cat_icon: true                      # Show folder icons
+    cat_count: true                     # Show post counts on categories
+    cat_color: ""                       # blank = default title colour
+    meta_style: "text"                  # Category / tag links in post info  [text | underline | pill | outline | chip]
+    meta_color: ""                      # blank = muted text colour
+  text:                                 # Text and fonts
+    font: "sans"                        # Body font  [sans | system-ui | rounded | serif | mono | inter | roboto | open-sans | lato | poppins | nunito | ibm-plex-sans | source-sans-3 | merriweather | lora | source-serif-4 | playfair | jetbrains-mono | ibm-plex-mono]
+    heading_font: "serif"               # Heading font  [same | sans | system-ui | rounded | serif | mono | inter | roboto | open-sans | lato | poppins | nunito | ibm-plex-sans | source-sans-3 | merriweather | lora | source-serif-4 | playfair | jetbrains-mono | ibm-plex-mono]
+    font_size: 16                       # Base font size (px)
+    line_height: 172                    # Post line height (%)
+    selection: ""                       # blank = accent colour
+  code:                                 # Code blocks
+    window: "mac"                       # Window style  [mac | windows | terminal | minimal | none]
+    highlight: "auto"                   # Syntax highlighting  [auto | github | monokai | dracula | nord | solarized | onedark | none]
+    background: "site"                  # Block background  [site | theme]
+    show_language: true                 # Show language name
+    copy: "icon"                        # Copy button  [icon | label | both | off]
+    dots: "muted"                       # Window dots (macOS style)  [muted | color]
+    line_numbers: false                 # Line numbers
+    wrap: false                         # Wrap long lines
+    italic_comments: true               # Italic comments
+    font: "mono"                        # Code font  [mono | consolas | cascadia | jetbrains-mono | fira-code | source-code-pro | ibm-plex-mono | roboto-mono | space-mono]
+    ligatures: false                    # Font ligatures (Fira / JetBrains)
+    font_size: 14                       # Code font size (px)
+    line_height: 155                    # Code line height (%)
+    max_height: 0                       # Max height, 0 = no limit (px)
+    radius: 10                          # Corner radius (px)
+    shadow: false                       # Drop shadow
+  projects:                             # Projects page (cards, picture, date, alignment)
+    columns: "auto"                     # Columns  [auto | 1 | 2 | 3]
+    align: "rows"                       # rows = picture, title, badges, text, tags and links line up across the cards of a row  [rows | top]
+    show_images: true                   # Show the picture area
+    image_height: 170                   # Picture height (px)
+    image_fit: "cover"                  # Picture fit  [cover | contain]
+    default_art: true                   # Draw a default SVG picture for projects without an image
+    default_image: ""                   # image path or URL - leave blank to use the SVG picture
+    art_style: "auto"                   # a project can override this in tools/_Apps/Site_Manager/Site_Manager.py  [auto | circuit | blocks | waves | hex | code | shield | globe | terminal | bars | network | layers | binary | none]
+    art_bg: "glow"                      # a project can override this in tools/_Apps/Site_Manager/Site_Manager.py  [glow | solid | grid | dots | stripes | none | gradient | aurora | rings | checker | lines | mesh | split | spotlight | sunburst | zigzag | hatch | blueprint | fade | off]
+    art_deco: "all"                     # a project can override this in tools/_Apps/Site_Manager/Site_Manager.py  [all | rings | dots | crosses | stars | diamonds | squares | corners | frame | off]
+    art_color: ""                       # blank = accent colour
+    art_text: true                      # Write the project name (or its own label) inside the picture
+    art_default_text: ""                # max 26 characters
+    art_default_sub: ""                 # max 44 characters
+    show_status: true                   # Show status badges
+    show_tags: true                     # Show tags
+    show_date: true                     # Show dates
+    date_position: "top-right"          # Date position  [top-right | inline]
+  layout:                               # Layout
+    sidebar_width: 280                  # Sidebar width (px)
+    content_width: 980                  # Content max width (px)
+    card_radius: 14                     # Card corner radius (px)
+    show_tagline: true                  # Show tagline under the title
+
+exclude:
+  - README.md
+
+# Sidebar menu (under the avatar) - edit by hand or in  python tools/_Apps/Site_Conf/Site_Conf.py  > Sidebar menu.
+nav:
+  - title: "Home"
+    url: "/"
+    icon: "home"
+  - title: "Categories"
+    url: "/categories/"
+    icon: "categories"
+  - title: "Tags"
+    url: "/tags/"
+    icon: "tags"
+  - title: "Archives"
+    url: "/archive/"
+    icon: "archive"
+  - title: "Projects"
+    url: "/projects/"
+    icon: "projects"
+  - title: "About"
+    url: "/about/"
+    icon: "about"

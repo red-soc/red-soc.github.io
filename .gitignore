@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------
+# Keep these OUT of GitHub - they are for you, not for the website.
+# (Jekyll / GitHub Pages only needs the site files themselves.)
+# ---------------------------------------------------------------
+
+# Old in-site tools folder (the tools now live OUTSIDE the site, in ../tools)
+_tools/
+tools/
+
+# Your private manual
+README.md
+
+# Local Jekyll build output / caches (GitHub builds the site itself)
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby / Node leftovers
+.bundle/
+vendor/
+node_modules/
+Gemfile.lock
+
+# Python
+__pycache__/
+*.pyc
+
+# Backups and scratch files
+*.bak
+*.tmp
+*.orig
+*~
+site-backup*.json
+*-backup*.json
+
+# Secrets
+.env
+.env.*
+
+# Editors and operating system noise
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

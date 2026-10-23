@@ -1,0 +1,24 @@
+{%- comment -%}
+  One row of a post list (Archive, tag pages, category pages).
+  Used by archive.md, _layouts/tag.html and _layouts/category.html (pass the post as  post=post).
+  All four date formats are printed and CSS shows the one chosen in _config.yml
+  (appearance.archive.date_format), so the live preview in tools/_Apps/Site_Conf/Site_Conf.py can switch them instantly.
+  The excerpt and the end arrow are always printed too; CSS shows them only when switched on
+  (appearance.archive.show_excerpt / show_arrow).
+{%- endcomment -%}
+<a class="archive-row" href="{{ include.post.url | relative_url }}">
+  <span class="archive-date">
+    <span class="ad ad-iso">{{ include.post.date | date: "%Y-%m-%d" }}</span>
+    <span class="ad ad-short">{{ include.post.date | date: "%b %-d, %Y" }}</span>
+    <span class="ad ad-long">{{ include.post.date | date: "%-d %B %Y" }}</span>
+    <span class="ad ad-dmy">{{ include.post.date | date: "%d/%m/%Y" }}</span>
+  </span>
+  <span class="archive-body">
+    <span class="archive-title">{{ include.post.title }}</span>
+    <span class="archive-excerpt">{{ include.post.excerpt | strip_html | normalize_whitespace | truncate: 170 }}</span>
+  </span>
+  {%- if include.post.categories.size > 0 %}
+  <span class="archive-cat">{{ include.post.categories | first }}</span>
+  {%- endif %}
+  <svg class="archive-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+</a>

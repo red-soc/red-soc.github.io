@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{% assign cat_posts = site.categories[page.category] %}
+<article class="page-card">
+  <h1 class="entry-title tax-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2.2 2.5H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+    {{ page.category }}
+    <span class="tax-count">{{ cat_posts | size }}</span>
+  </h1>
+  <div class="list-section">
+    {% for post in cat_posts %}
+      {% include archive-row.html post=post %}
+    {% endfor %}
+  </div>
+</article>

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="page-card">
+  <h1 class="entry-title">{{ page.title }}</h1>
+  <div class="entry-meta">
+    <span class="meta-date">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M3 10h18"/></svg>
+      {{ page.date | date: "%b %-d, %Y" }}
+    </span>
+    {% if page.categories.size > 0 %}
+      <span class="meta-cats">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2.2 2.5H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+        <span class="meta-links">{% for c in page.categories %}<a class="meta-link" href="{% assign c_slug = c | slugify %}{{ '/categories/' | append: c_slug | append: '/' | relative_url }}">{{ c }}</a>{% unless forloop.last %}<span class="meta-sep">, </span>{% endunless %}{% endfor %}</span>
+      </span>
+    {% endif %}
+    {% if page.tags.size > 0 %}
+      <span class="meta-tags">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>
+        <span class="meta-links">{% for t in page.tags %}<a class="meta-link" href="{% assign t_slug = t | slugify %}{{ '/tags/' | append: t_slug | append: '/' | relative_url }}">{{ t }}</a>{% unless forloop.last %}<span class="meta-sep">, </span>{% endunless %}{% endfor %}</span>
+      </span>
+    {% endif %}
+  </div>
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
+
+<!-- Table of contents: filled in by assets/layout-toggle.js from the post headings -->
+<button class="toc-toggle" id="toc-toggle" type="button" hidden aria-controls="toc-panel" aria-expanded="false" aria-label="Show contents" title="Show contents">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><circle cx="4.5" cy="6" r="0.6"/><circle cx="4.5" cy="12" r="0.6"/><circle cx="4.5" cy="18" r="0.6"/></svg>
+  <span>Contents</span>
+</button>
+<div class="toc-backdrop" id="toc-backdrop"></div>
+<aside class="toc-panel" id="toc-panel" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <nav class="toc-nav" id="toc-nav"></nav>
+</aside>

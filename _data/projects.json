@@ -1,0 +1,46 @@
+{
+  "settings": {
+    "intro": "",
+    "columns": "auto",
+    "image_height": 170,
+    "image_fit": "cover",
+    "show_images": true,
+    "show_status": true,
+    "show_tags": true,
+    "show_date": true
+  },
+  "items": [
+    {
+      "id": "erty",
+      "title": "erty\"'(-è_çà",
+      "description": "\"e'r(t-è_çe'r(t-yèuio'(-è_io",
+      "note": "",
+      "image": "/assets/img/4.jpeg",
+      "image_alt": "",
+      "image_pos": "50% 12%",
+      "image_zoom": "2.1",
+      "status": "",
+      "date": "2026",
+      "tags": [],
+      "featured": false,
+      "highlight": false,
+      "hidden": false,
+      "links": [
+        {
+          "label": "View on GitHub",
+          "url": "https://github.com/",
+          "new_tab": true
+        }
+      ],
+      "art_text": "",
+      "art_subtitle": "",
+      "art_style": "",
+      "art_bg": "",
+      "art_color": "",
+      "art_fit": "contain",
+      "art_draw": "",
+      "art_label": "",
+      "art_deco": ""
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Fallback sidebar menu, used only if _config.yml has no `nav:` key at all.
+- { title: "Home", url: "/", icon: "home" }
+- { title: "Categories", url: "/categories/", icon: "categories" }
+- { title: "Tags", url: "/tags/", icon: "tags" }
+- { title: "Archives", url: "/archive/", icon: "archive" }
+- { title: "Projects", url: "/projects/", icon: "projects" }
+- { title: "About", url: "/about/", icon: "about" }
