@@ -1,0 +1,50 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+
+<div class="search-wrap" role="search">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"/>
+    <path d="m20 20-3.8-3.8"/>
+  </svg>
+  <input type="search" id="search-input" placeholder="Search posts&hellip;"
+         autocomplete="off" aria-label="Search posts">
+  <div class="search-scope" role="group" aria-label="Search in">
+    <button type="button" class="scope-btn active" data-scope="title" aria-pressed="true">Title</button>
+    <button type="button" class="scope-btn active" data-scope="content" aria-pressed="true">Content</button>
+  </div>
+  <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">&times;</button>
+</div>
+
+<div class="post-list" id="post-list" data-per-page="{{ site.appearance.pagination.per_page | default: 10 }}">
+  {% for post in site.posts %}
+    <article class="post-card" data-title="{{ post.title | escape | downcase }} {% for c in post.categories %}{{ c | escape | downcase }} {% endfor %}{% for t in post.tags %}{{ t | escape | downcase }} {% endfor %}" data-content="{{ post.excerpt | strip_html | normalize_whitespace | escape | downcase }} {{ post.content | strip_html | normalize_whitespace | escape | downcase }}">
+      <h2><a class="card-link" href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p class="excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 210 }}</p>
+      <div class="post-meta">
+        <span class="meta-date">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M3 10h18"/></svg>
+          {{ post.date | date: "%b %-d, %Y" }}
+        </span>
+        {% if post.categories.size > 0 %}
+          <span class="meta-cats">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2.2 2.5H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+            <span class="meta-links">{% for c in post.categories %}<a class="meta-link" href="{% assign c_slug = c | slugify %}{{ '/categories/' | append: c_slug | append: '/' | relative_url }}">{{ c }}</a>{% unless forloop.last %}<span class="meta-sep">, </span>{% endunless %}{% endfor %}</span>
+          </span>
+        {% endif %}
+        {% if post.tags.size > 0 %}
+          <span class="meta-tags">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>
+            <span class="meta-links">{% for t in post.tags %}<a class="meta-link" href="{% assign t_slug = t | slugify %}{{ '/tags/' | append: t_slug | append: '/' | relative_url }}">{{ t }}</a>{% unless forloop.last %}<span class="meta-sep">, </span>{% endunless %}{% endfor %}</span>
+          </span>
+        {% endif %}
+      </div>
+    </article>
+  {% endfor %}
+</div>
+
+<nav class="pagination" id="pagination" aria-label="Pagination" hidden></nav>
+
+<p class="no-results" id="no-results" hidden>No posts found for &ldquo;<strong id="no-results-query"></strong>&rdquo;.</p>

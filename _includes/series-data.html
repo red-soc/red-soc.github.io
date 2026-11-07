@@ -1,0 +1,22 @@
+{%- assign sr_me = page.path | split: "/" | last -%}
+{%- assign sr_item = nil -%}{%- assign sr_prev = nil -%}{%- assign sr_next = nil -%}{%- assign sr_pos = 0 -%}{%- assign sr_total = 0 -%}{%- assign sr_files = "" | split: "|" -%}
+{%- if site.data.series and site.data.series.items -%}
+  {%- for s in site.data.series.items -%}
+    {%- unless s.hidden -%}{%- if s.posts contains sr_me -%}{%- assign sr_item = s -%}{%- break -%}{%- endif -%}{%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if sr_item -%}
+  {%- assign sr_names = "" -%}
+  {%- for f in sr_item.posts -%}
+    {%- assign sr_key = "_posts/" | append: f -%}
+    {%- assign sr_hit = site.posts | where: "path", sr_key | first -%}
+    {%- if sr_hit -%}{%- assign sr_names = sr_names | append: f | append: "|" -%}{%- endif -%}
+  {%- endfor -%}
+  {%- assign sr_files = sr_names | split: "|" -%}
+  {%- assign sr_total = sr_files | size -%}
+  {%- for f in sr_files -%}{%- if f == sr_me -%}{%- assign sr_pos = forloop.index -%}{%- endif -%}{%- endfor -%}
+  {%- if sr_pos > 1 -%}{%- assign sr_i = sr_pos | minus: 2 -%}{%- assign sr_key = "_posts/" | append: sr_files[sr_i] -%}{%- assign sr_prev = site.posts | where: "path", sr_key | first -%}{%- endif -%}
+  {%- if sr_pos > 0 and sr_pos < sr_total -%}{%- assign sr_key = "_posts/" | append: sr_files[sr_pos] -%}{%- assign sr_next = site.posts | where: "path", sr_key | first -%}{%- endif -%}
+  {%- assign sr_slug = sr_item.id | default: sr_item.title | slugify -%}
+  {%- assign sr_url = "/series/" | append: sr_slug | append: "/" -%}
+{%- endif -%}

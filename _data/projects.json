@@ -1,0 +1,110 @@
+{
+  "settings": {
+    "intro": "",
+    "columns": "auto",
+    "image_height": 170,
+    "image_fit": "cover",
+    "show_images": true,
+    "show_status": true,
+    "show_tags": true,
+    "show_date": true
+  },
+  "items": [
+    {
+      "id": "binary-analysis-toolkit",
+      "title": "Binary Analysis Toolkit",
+      "description": "Small utilities for parsing PE, ELF, and Mach-O images: import tables, relocations, DWARF notes, and entry-point discovery. Built for learning, one format at a time.",
+      "note": "",
+      "image": "",
+      "image_alt": "",
+      "image_pos": "",
+      "image_zoom": "",
+      "status": "Archived",
+      "date": "",
+      "tags": [],
+      "featured": false,
+      "highlight": false,
+      "hidden": false,
+      "links": [
+        {
+          "label": "View on GitHub",
+          "url": "https://github.com/Y-JANBOUBI/Base-X",
+          "new_tab": false
+        }
+      ],
+      "art_text": "Binary Toolkit",
+      "art_subtitle": "PE / ELF / Mach-O",
+      "art_style": "circuit",
+      "art_bg": "",
+      "art_color": "",
+      "art_fit": "",
+      "art_draw": "",
+      "art_label": "",
+      "art_deco": ""
+    },
+    {
+      "id": "hypervisor-notes",
+      "title": "Hypervisor Research Notes",
+      "description": "Ongoing notes on Intel VT-x and AMD-V internals: VM-exit handling, second-stage address translation, EPT view management, and the boundaries that anti-cheat engines monitor.",
+      "note": "",
+      "image": "",
+      "image_alt": "",
+      "image_pos": "",
+      "image_zoom": "",
+      "status": "",
+      "date": "",
+      "tags": [],
+      "featured": false,
+      "highlight": false,
+      "hidden": false,
+      "links": [
+        {
+          "label": "View on GitHub",
+          "url": "https://github.com/Y-JANBOUBI/Base-X",
+          "new_tab": false
+        }
+      ],
+      "art_text": "Hypervisor",
+      "art_subtitle": "VT-x / AMD-V",
+      "art_style": "hex",
+      "art_bg": "",
+      "art_color": "",
+      "art_fit": "",
+      "art_draw": "",
+      "art_label": "",
+      "art_deco": ""
+    },
+    {
+      "id": "tech-notes-write-ups",
+      "title": "Tech Notes & Write-ups",
+      "description": "Long-form notes that do not fit the blog series format: RE clipboards, tooling setups, and observations from reverse-engineering sessions.",
+      "note": "",
+      "image": "",
+      "image_alt": "",
+      "image_pos": "",
+      "image_zoom": "",
+      "status": "",
+      "date": "",
+      "tags": [],
+      "featured": false,
+      "highlight": false,
+      "hidden": false,
+      "links": [
+        {
+          "label": "Browse the archive",
+          "url": "/archive/",
+          "new_tab": false
+        }
+      ],
+      "art_text": "Tech Notes",
+      "art_subtitle": "RE write-ups",
+      "art_style": "code",
+      "art_bg": "",
+      "art_color": "",
+      "art_fit": "",
+      "art_draw": "",
+      "art_label": "",
+      "art_deco": ""
+    }
+  ]
+}

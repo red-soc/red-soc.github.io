@@ -1,0 +1,649 @@
+title: "Red-Soc Blog"
+description: "Security Research, Hacking, And Tech Notes."
+url: "https://red-soc.github.io"
+baseurl: ""
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page
+
+appearance:
+  mode: dark
+  accent: "#b3202a"
+  keep_text_readable: true
+  colors: {}
+  features_off: [page_style, theme_button, fx_load, fx_cursor, fx_pages, fx_theme, series_sidebar]
+  background:
+    type: "packets"
+    animate: true
+    speed: 3
+    intensity: 60
+    density: 35
+    blur: 0
+    color1: ""
+    color2: ""
+    color3: ""
+    interactive: false
+    glass: false
+    surfaces: "custom"
+    mobile: true
+  surf_sidebar:
+    mode: "transparent"
+    opacity: 70
+    blur: 0
+    edge_shadow: "on"
+  surf_page:
+    mode: "glass"
+    opacity: 0
+    blur: 30
+    edge_shadow: "on"
+  surf_cards:
+    mode: "transparent"
+    opacity: 0
+    blur: 0
+    edge_shadow: "on"
+  surf_panels:
+    mode: "transparent"
+    opacity: 60
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_categories:
+    mode: "transparent"
+    opacity: 68
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_tags:
+    mode: "transparent"
+    opacity: 68
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_archive:
+    mode: "transparent"
+    opacity: 68
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_projects:
+    mode: "transparent"
+    opacity: 68
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_about:
+    mode: "transparent"
+    opacity: 68
+    blur: 0
+    edge_shadow: "on"
+  surf_pg_series:
+    mode: "transparent"
+    opacity: 68
+    blur: 10
+    edge_shadow: "on"
+  surf_series:
+    mode: "transparent"
+    opacity: 68
+    blur: 10
+    edge_shadow: "on"
+  sidebar:
+    style: "panel"
+    label: ""
+    head_layout: "inline"
+    inline_avatar_size: 63
+    align: "left"
+    avatar_align: "auto"
+    title_align: "auto"
+    tagline_align: "auto"
+    avatar_position: "top"
+    title_position: "top"
+    tagline_position: "top"
+    show_title: true
+    show_icons: true
+    icon_size: 22
+    icon_gap: 13
+    font_size: 15
+    uppercase: true
+    bold_active: true
+    item_padding: 7
+    item_gap: 2
+    item_radius: 14
+    active_style: "outline"
+    show_check: false
+    text_color: ""
+    hover_bg: ""
+    active_bg: ""
+    active_color: ""
+    divider: true
+    resizable: false
+    toggle_style: "arrow"
+    toggle_look: "auto"
+    toggle_shape: "auto"
+    toggle_size: 33
+    toggle_position: "edge_middle"
+    toggle_reveal: "always"
+    toggle_shortcut: true
+    edge_hide: "drag"
+    hidden_content: "wider"
+    hidden_style: "rail"
+    rail_width: 65
+    rail_avatar: true
+    avatar_toggle: true
+    rail_avatar_toggle: true
+    rail_tooltips: true
+    rail_toggle: "above"
+    hover_open: "off"
+    hover_delay: 150
+    button_scroll: "page_top"
+    button_scroll_sidebar: true
+    button_scroll_toc: true
+    button_scroll_settings: false
+    button_scroll_to_top: false
+  avatar:
+    show: true
+    image: "/assets/logo.png"
+    image_x: 50
+    image_y: 50
+    image_zoom: 115
+    image_fit: "cover"
+    size: 196
+    shape: "rounded"
+    border_color: ""
+    border_width: 2
+    background: "#000000"
+  links:
+    color: ""
+    hover_color: ""
+    highlight_bg: ""
+    underline: "always"
+  search:
+    hit_bg: ""
+    hit_text: ""
+    focus_color: ""
+  breadcrumb:
+    show: true
+    style: "underline"
+    separator: "chevron"
+    font_size: 15
+    link_color: ""
+    current_color: ""
+    highlight: ""
+    bold_current: false
+    uppercase: false
+  pagination:
+    per_page: 10
+    max_pages: 5
+    show_edges: true
+    show_arrows: true
+    show_info: false
+    align: "center"
+    gap: 8
+    scroll_top: true
+  buttons:
+    variant: "outline"
+    shape: "auto"
+    size: "medium"
+    color: ""
+    border_width: 1
+    shadow: "none"
+    hover: "glow"
+    floating: "frosted"
+    float_solid: true
+    float_hide: "always"
+  to_top:
+    show: true
+    style: "circle"
+    icon: "chevron"
+    label: "Top"
+    position: "bottom-right"
+    show_after: 400
+    behavior: "always"
+    show_on: "all"
+    progress: false
+    smooth: true
+    offset_x: 20
+    offset_y: 24
+    color: ""
+  article:
+    table_style: "grid"
+    table_header: "accent"
+    table_density: "normal"
+    table_font_size: 15
+    table_align: "left"
+    table_first_bold: false
+    table_hover: true
+    table_scroll: true
+    table_nowrap: false
+    table_radius: 10
+    heading_style: "underline"
+    heading_color: "default"
+    inline_code: "box"
+    blockquote: "minimal"
+    list_marker: "accent"
+    image_radius: 0
+    image_border: false
+    image_shadow: false
+    paragraph_gap: 100
+    justify: false
+    meta_date: true
+    meta_categories: true
+    meta_tags: true
+  toc:
+    style: "lines"
+    active_style: "bar"
+    font_size: 14
+    width: 250
+    title_style: "plain"
+    active_color: ""
+    hover_color: ""
+    caret_style: "chevron"
+    toggle_look: "auto"
+    toggle_shape: "auto"
+    toggle_label: true
+    button_scroll: "current"
+  archive:
+    row_style: "timeline"
+    row_radius: 0
+    date_format: "iso"
+    date_position: "left"
+    date_font: "mono"
+    date_color: ""
+    title_weight: "normal"
+    title_color: ""
+    font_size: 17
+    row_padding: 15
+    col_gap: 24
+    show_excerpt: false
+    show_arrow: true
+    show_category: false
+    cat_style: "pill"
+    group_by_year: true
+    year_style: "line"
+    year_size: 22
+    year_count: true
+    hover: "slide"
+  taxonomy:
+    tag_style: "box"
+    tag_size: "medium"
+    tag_color: ""
+    tag_count: true
+    tag_align: "left"
+    cat_style: "compact"
+    cat_icon: true
+    cat_count: true
+    cat_color: ""
+    meta_style: "outline"
+    meta_color: ""
+  text:
+    font: "sans"
+    heading_font: "serif"
+    font_size: 16
+    line_height: 172
+    selection: ""
+  code:
+    window: "mac"
+    highlight: "auto"
+    background: "site"
+    show_language: true
+    copy: "both"
+    dots: "muted"
+    line_numbers: false
+    wrap: false
+    italic_comments: true
+    font: "mono"
+    ligatures: false
+    font_size: 14
+    line_height: 155
+    max_height: 0
+    radius: 10
+    shadow: true
+  projects:
+    columns: "auto"
+    align: "rows"
+    show_images: true
+    image_fit: "cover"
+    default_art: true
+    default_image: ""
+    art_style: "network"
+    art_bg: "split"
+    art_deco: "corners"
+    art_color: ""
+    art_text: true
+    art_default_text: ""
+    art_default_sub: ""
+    show_status: true
+    show_tags: true
+    show_date: true
+  layout:
+    sidebar_width: 283
+    content_width: 980
+    card_radius: 14
+    show_tagline: true
+  proj_card:
+    box_style: "default"
+    background: ""
+    border_color: ""
+    border_width: 1
+    radius: 14
+    padding: 26
+    shadow: "none"
+    hover: "border"
+    gap: 22
+    text_align: "left"
+    image_height: 170
+    image_inset: "edge"
+    title_size: 20
+    title_color: ""
+    title_font: "serif"
+    desc_size: 15
+    desc_color: ""
+    desc_lines: 0
+    image_hover: "brighten"
+    title_hover: "accent"
+    link_style: "button"
+    link_color: ""
+    link_hover_color: ""
+    link_font_size: 14
+    link_weight: "normal"
+    link_uppercase: false
+    link_arrow: "none"
+    link_align: "left"
+    link_equal: true
+    link_gap: 20
+    link_radius: 8
+    link_hover: "glow"
+  proj_badges:
+    badge_style: "outline"
+    badge_color: ""
+    badge_text_color: ""
+    badge_shape: "rounded"
+    badge_size: "medium"
+    badge_border_width: 1
+    badge_weight: "semibold"
+    badge_uppercase: true
+    badge_equal: true
+    badge_gap: 8
+    tag_style: "pill"
+    tag_color: ""
+    tag_text_color: ""
+    tag_shape: "rounded"
+    tag_size: "medium"
+    tag_border_width: 1
+    tag_uppercase: false
+    tag_equal: false
+    tag_gap: 6
+    tag_align: "left"
+    tag_hover: "none"
+  proj_date:
+    date_position: "auto"
+    date_style: "plain"
+    date_shape: "rounded"
+    date_format: "iso"
+    date_icon: "calendar"
+    date_font: "sans"
+    date_color: ""
+    date_bg: ""
+    date_size: 12
+    date_weight: "semibold"
+    date_upper: false
+  series_card:
+    box_style: "default"
+    background: ""
+    border_color: ""
+    border_width: 1
+    radius: 14
+    padding: 26
+    shadow: "none"
+    hover: "border"
+    gap: 22
+    text_align: "left"
+    image_height: 170
+    image_inset: "edge"
+    title_size: 20
+    title_color: ""
+    title_font: "serif"
+    desc_size: 15
+    desc_color: ""
+    desc_lines: 0
+    image_hover: "brighten"
+    title_hover: "accent"
+    link_style: "button"
+    link_color: ""
+    link_hover_color: ""
+    link_font_size: 14
+    link_weight: "semibold"
+    link_uppercase: false
+    link_arrow: "none"
+    link_align: "left"
+    link_equal: true
+    link_gap: 20
+    link_radius: 8
+    link_hover: "glow"
+  series_badges:
+    badge_style: "outline"
+    badge_color: ""
+    badge_text_color: ""
+    badge_shape: "rounded"
+    badge_size: "medium"
+    badge_border_width: 1
+    badge_weight: "semibold"
+    badge_uppercase: true
+    badge_equal: false
+    badge_gap: 8
+    tag_style: "pill"
+    tag_color: ""
+    tag_text_color: ""
+    tag_shape: "rounded"
+    tag_size: "medium"
+    tag_border_width: 1
+    tag_uppercase: false
+    tag_equal: false
+    tag_gap: 6
+    tag_align: "left"
+    tag_hover: "none"
+  series_date:
+    date_position: "auto"
+    date_style: "plain"
+    date_shape: "auto"
+    date_format: "iso"
+    date_icon: "calendar"
+    date_font: "sans"
+    date_color: ""
+    date_bg: ""
+    date_size: 12
+    date_weight: "semibold"
+    date_upper: false
+  fx_scroll:
+    reveal: false
+    reveal_style: "fade"
+    reveal_duration: 500
+    reveal_stagger: 60
+    reveal_easing: "ease-out"
+    progress: true
+    progress_scope: "custom"
+    progress_height: 3
+    progress_color: ""
+    parallax: false
+    parallax_strength: 15
+    progress_posts: true
+    progress_home: false
+    progress_archive: false
+    progress_categories: false
+    progress_tags: false
+    progress_projects: false
+    progress_about: false
+    progress_pages: false
+  fx_cards:
+    tilt: false
+    tilt_max: 6
+    glow: false
+    glow_color: ""
+    glow_size: 220
+    border: true
+    border_speed: 4
+    hover: "lift"
+    hover_duration: 200
+    hover_easing: "ease-out"
+  fx_text:
+    typing: "both"
+    typing_speed: 25
+    typing_delay: 0
+    cursor_char: "block"
+    decrypt: false
+    decrypt_duration: 700
+    glitch: false
+    glitch_color: ""
+  fx_menu:
+    marker: false
+    marker_duration: 300
+    slide: false
+    slide_stagger: 50
+    hover_glow: true
+    glow_color: ""
+  fx_toc:
+    panel: true
+    panel_style: "slide"
+    panel_duration: 350
+    slide: true
+    slide_style: "slide"
+    slide_stagger: 35
+    marker: true
+    marker_duration: 300
+    hover_glow: true
+    glow_color: ""
+  fx_code:
+    typewriter: false
+    type_speed: 40
+    scanline: false
+    scan_speed: 4
+    glow: true
+    glow_color: ""
+    glow_size: 10
+  series:
+    enabled: true
+    accent: ""
+    radius: 12
+    border_width: 1
+    shadow: "none"
+    font_size: 100
+    hover: "lift"
+  series_box:
+    box: "top"
+    box_paragraph: 1
+    box_heading: 1
+    box_also_bottom: false
+    box_style: "filled"
+    box_width: "full"
+    box_collapsed: true
+    box_show_label: true
+    box_label: "Series"
+    box_numbers: true
+    box_number_style: "square"
+    box_progress: true
+    box_part_text: "Part"
+    box_of_text: "of"
+    box_dates: false
+    box_done: true
+    box_max_height: 0
+  series_prevnext:
+    prevnext: "always"
+    prevnext_position: "bottom"
+    prevnext_style: "cards"
+    prevnext_titles: false
+    prevnext_mid: true
+    prevnext_stack: true
+    prev_label: "Previous"
+    next_label: "Next"
+  series_related:
+    related: true
+    related_position: "end"
+    related_title: "You may also like"
+    related_title_align: "left"
+    related_count: 3
+    related_auto: true
+    related_style: "cards"
+    related_columns: "auto"
+    related_date: true
+    related_excerpt: false
+    related_divider: true
+    related_hover: "highlight"
+    related_hover_color: ""
+    related_hover_lift: 2
+    related_hover_duration: 200
+  series_hover:
+    hover_on: true
+    hover_pn: "slide"
+    hover_list: "slide"
+    hover_color: ""
+    hover_lift: 2
+    hover_grow: 103
+    hover_duration: 200
+    hover_easing: "ease"
+  series_page:
+    page_columns: "auto"
+    page_align: "rows"
+    page_images: true
+    page_image_fit: "cover"
+    page_default_art: true
+    page_default_image: ""
+    page_art_style: "inherit"
+    page_art_bg: "inherit"
+    page_art_deco: "inherit"
+    page_art_color: ""
+    page_art_text: true
+    page_art_default_text: ""
+    page_art_default_sub: ""
+    page_show_status: true
+    page_show_tags: true
+    page_show_date: true
+    page_intro: ""
+    page_desc: true
+    page_count: true
+    page_first_link: true
+    page_start_label: "Start"
+    page_open_label: "Open"
+    page_hero: true
+    page_hero_height: 220
+    page_style: "timeline"
+    page_dates: true
+    page_back: true
+    page_back_label: "Back"
+    page_btn_style: "inherit"
+    page_btn_shape: "inherit"
+    page_btn_size: "inherit"
+    page_btn_hover: "inherit"
+    page_btn_layout: "full"
+    page_btn_icons: false
+
+exclude:
+  - README.md
+
+nav:
+  - title: "Home"
+    url: "/"
+    icon: "home"
+  - title: "Categories"
+    url: "/categories/"
+    icon: "categories"
+  - title: "Tags"
+    url: "/tags/"
+    icon: "tags"
+  - title: "Archives"
+    url: "/archive/"
+    icon: "archive"
+  - title: "Projects"
+    url: "/projects/"
+    icon: "projects"
+  - title: "Series"
+    url: "/series/"
+    icon: "series"
+  - title: "About"
+    url: "/about/"
+    icon: "about"

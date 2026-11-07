@@ -1,0 +1,16 @@
+{%- assign sa = site.appearance.series_related | default: site.appearance.series -%}
+{%- assign rel_me = page.path | split: "/" | last -%}
+{%- assign rel_cfg = site.data.related[rel_me] -%}
+{%- assign rel_html = "" -%}
+{%- capture rel_items -%}
+{%- for f in rel_cfg.pin -%}{%- assign rk = "_posts/" | append: f -%}{%- assign rp = site.posts | where: "path", rk | first -%}
+{%- if rp and f != rel_me -%}{%- assign rel_kind = "pin" -%}{% include related-item.html post=rp kind="pin" %}{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign rel_test = rel_items | strip -%}
+{%- if rel_test != "" -%}
+<section class="sr-related" aria-label="Related articles">
+  <h2 class="sr-related-title" data-sr-text="related">{{ sa.related_title | default: "You may also like" }}</h2>
+  <div class="sr-related-grid" data-max="{{ sa.related_count | default: 3 }}">{{ rel_items }}</div>
+</section>
+{%- endif -%}

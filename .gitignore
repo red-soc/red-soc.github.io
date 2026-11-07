@@ -1,0 +1,41 @@
+# Local Tools
+tools/
+
+# Private Manual
+README.md
+
+# Local Jekyll build output / caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby / Node leftovers
+.bundle/
+vendor/
+node_modules/
+Gemfile.lock
+
+# Python
+__pycache__/
+*.pyc
+
+# Backups and scratch files
+*.bak
+*.tmp
+*.orig
+*~
+site-backup*.json
+*-backup*.json
+
+# Secrets
+.env
+.env.*
+
+# Editors and operating system noise
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

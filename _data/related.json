@@ -1,0 +1,16 @@
+{
+  "2025-09-09-test-toc-09-short-sections.md": {
+    "exclude": [],
+    "pin": [
+      "2025-09-10-test-toc-10-anchor-links.md"
+    ]
+  },
+  "2025-09-10-test-toc-10-anchor-links.md": {
+    "exclude": [],
+    "pin": [
+      "2025-09-09-test-toc-09-short-sections.md",
+      "2025-09-07-test-toc-07-no-headings.md",
+      "2025-09-08-test-toc-08-forty-sections-stress.md"
+    ]
+  }
+}

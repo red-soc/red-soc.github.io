@@ -1,0 +1,17 @@
+{%- assign sa = site.appearance.series_box | default: site.appearance.series -%}
+{%- if sr_item and sr_total > 0 -%}
+{%- assign sr_pct = sr_pos | times: 100 | divided_by: sr_total -%}
+<details class="sr-box" data-where="{{ include.where }}"{% unless sa.box_collapsed %} open{% endunless %}>
+  <summary class="sr-box-head">
+    <span class="sr-box-label" data-sr-text="box">{{ sa.box_label | default: "Series" }}</span>
+    <a class="sr-box-title" href="{{ sr_url | relative_url }}">{{ sr_item.title | escape }}</a>
+    <span class="sr-box-part"><span data-sr-text="part">{{ sa.box_part_text | default: "Part" }}</span> {{ sr_pos }} <span data-sr-text="of">{{ sa.box_of_text | default: "of" }}</span> {{ sr_total }}</span>
+    <span class="sr-box-bar" aria-hidden="true"><span style="width:{{ sr_pct }}%"></span></span>
+  </summary>
+  <ol class="sr-list">
+    {%- for f in sr_files -%}{%- assign sr_key = "_posts/" | append: f -%}{%- assign sp = site.posts | where: "path", sr_key | first -%}
+    <li class="sr-li{% if f == sr_me %} current{% elsif forloop.index < sr_pos %} done{% endif %}"><span class="sr-num">{{ forloop.index }}</span>{% if f == sr_me %}<span class="sr-li-title" aria-current="page">{{ sp.title | escape }}</span>{% else %}<a class="sr-li-title" href="{{ sp.url | relative_url }}">{{ sp.title | escape }}</a>{% endif %}<span class="sr-li-date">{{ sp.date | date: "%b %-d, %Y" }}</span></li>
+    {%- endfor %}
+  </ol>
+</details>
+{%- endif -%}

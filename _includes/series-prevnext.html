@@ -1,0 +1,14 @@
+{%- assign sa = site.appearance.series_prevnext | default: site.appearance.series -%}
+{%- if sr_item and sr_pos > 0 -%}
+<nav class="sr-pn" data-where="{{ include.where }}" data-kind="series" aria-label="Series navigation">
+  {%- if sr_prev %}<a class="sr-pn-link sr-pn-prev" href="{{ sr_prev.url | relative_url }}" rel="prev"><span class="sr-pn-arrow" aria-hidden="true">&larr;</span><span class="sr-pn-txt"><span class="sr-pn-label" data-sr-text="prev">{{ sa.prev_label | default: "Previous" }}</span><span class="sr-pn-title">{{ sr_prev.title | escape }}</span></span></a>{% else %}<span class="sr-pn-link sr-pn-empty"></span>{% endif %}
+  <a class="sr-pn-mid" href="{{ sr_url | relative_url }}" title="{{ sr_item.title | escape }}">{{ sr_pos }} / {{ sr_total }}</a>
+  {%- if sr_next %}<a class="sr-pn-link sr-pn-next" href="{{ sr_next.url | relative_url }}" rel="next"><span class="sr-pn-txt"><span class="sr-pn-label" data-sr-text="next">{{ sa.next_label | default: "Next" }}</span><span class="sr-pn-title">{{ sr_next.title | escape }}</span></span><span class="sr-pn-arrow" aria-hidden="true">&rarr;</span></a>{% else %}<span class="sr-pn-link sr-pn-empty"></span>{% endif %}
+</nav>
+{%- elsif page.previous or page.next -%}
+<nav class="sr-pn" data-where="{{ include.where }}" data-kind="chrono" aria-label="Article navigation">
+  {%- if page.previous %}<a class="sr-pn-link sr-pn-prev" href="{{ page.previous.url | relative_url }}" rel="prev"><span class="sr-pn-arrow" aria-hidden="true">&larr;</span><span class="sr-pn-txt"><span class="sr-pn-label" data-sr-text="prev">{{ sa.prev_label | default: "Previous" }}</span><span class="sr-pn-title">{{ page.previous.title | escape }}</span></span></a>{% else %}<span class="sr-pn-link sr-pn-empty"></span>{% endif %}
+  <span class="sr-pn-mid sr-pn-mid-empty"></span>
+  {%- if page.next %}<a class="sr-pn-link sr-pn-next" href="{{ page.next.url | relative_url }}" rel="next"><span class="sr-pn-txt"><span class="sr-pn-label" data-sr-text="next">{{ sa.next_label | default: "Next" }}</span><span class="sr-pn-title">{{ page.next.title | escape }}</span></span><span class="sr-pn-arrow" aria-hidden="true">&rarr;</span></a>{% else %}<span class="sr-pn-link sr-pn-empty"></span>{% endif %}
+</nav>
+{%- endif -%}

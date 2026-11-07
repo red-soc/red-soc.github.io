@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": "new-series",
+      "title": "New series",
+      "description": "",
+      "posts": [
+        "2025-09-01-test-toc-01-long-nested.md",
+        "2025-09-06-test-toc-06-one-heading.md"
+      ],
+      "hidden": false,
+      "status": "In progress",
+      "image": "/assets/logo.png",
+      "art_color": "#123456"
+    },
+    {
+      "id": "new-series-2",
+      "title": "New series 2",
+      "description": "",
+      "posts": [
+        "2025-09-09-test-toc-09-short-sections.md",
+        "2025-09-07-test-toc-07-no-headings.md",
+        "2025-09-08-test-toc-08-forty-sections-stress.md"
+      ],
+      "hidden": false
+    }
+  ]
+}

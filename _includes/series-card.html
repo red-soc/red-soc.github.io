@@ -1,0 +1,25 @@
+{%- assign stp = site.appearance.series_page | default: site.appearance.series -%}
+{%- assign sc_n = 0 -%}{%- assign sc_first = nil -%}{%- assign sc_last = nil -%}
+{%- for f in include.s.posts -%}{%- assign sk = "_posts/" | append: f -%}{%- assign sp = site.posts | where: "path", sk | first -%}{%- if sp -%}{%- assign sc_n = sc_n | plus: 1 -%}{%- unless sc_first -%}{%- assign sc_first = sp -%}{%- endunless -%}{%- assign sc_last = sp -%}{%- endif -%}{%- endfor -%}
+{%- assign sc_slug = include.s.id | default: include.s.title | slugify -%}
+{%- assign sc_url = '/series/' | append: sc_slug | append: '/' | relative_url -%}
+{%- assign s_art = include.s.art_style | default: "" -%}{%- assign s_bg = include.s.art_bg | default: "" -%}{%- assign s_deco = include.s.art_deco | default: "" -%}
+{%- assign s_draw = include.s.art_draw | default: "" -%}{%- assign s_label = include.s.art_label | default: "" -%}{%- assign s_fit = include.s.art_fit | default: "" -%}
+{%- assign s_style = "" -%}{%- if include.s.art_color and include.s.art_color != "" -%}{%- capture s_style %}--art-c: {{ include.s.art_color | escape }};{% endcapture -%}{%- endif -%}
+{%- if s_fit == "cover" or s_fit == "contain" -%}{%- capture s_style %}{{ s_style }}--proj-img-fit: {{ s_fit }};{% endcapture -%}{%- endif -%}
+<div class="project-card sr-card{% if include.s.highlight %} is-featured{% endif %}" data-idx="{{ include.i | modulo: 5 }}"{% if s_art != "" %} data-art="{{ s_art | escape }}"{% endif %}{% if s_bg != "" %} data-artbg="{{ s_bg | escape }}"{% endif %}{% if s_deco != "" %} data-artdeco="{{ s_deco | escape }}"{% endif %}{% if s_draw != "" %} data-artdraw="{{ s_draw | escape }}"{% endif %}{% if s_label != "" %} data-artlabel="{{ s_label | escape }}"{% endif %}{% if include.s.art_color and include.s.art_color != "" %} data-artown="1"{% endif %}{% if s_style != "" %} style="{{ s_style }}"{% endif %}>
+  {%- if stp.page_images != false -%}<a class="sr-card-pic" href="{{ sc_url }}" tabindex="-1" aria-hidden="true">{% capture sc_sub %}{{ sc_n }} part{% if sc_n != 1 %}s{% endif %}{% endcapture %}{% include series-thumb.html s=include.s sub=sc_sub %}</a>{%- endif -%}
+  <h3><a class="sr-card-title" href="{{ sc_url }}">{{ include.s.title | escape }}</a></h3>
+  <div class="project-meta">
+    <span class="project-status status-featured sr-card-count">{{ sc_n }} part{% if sc_n != 1 %}s{% endif %}</span>
+    {%- if include.s.featured %}<span class="project-status status-featured">Featured</span>{% endif -%}
+    {%- if include.s.status and include.s.status != "" %}<span class="project-status status-{{ include.s.status | slugify }}">{{ include.s.status | escape }}</span>{% endif -%}
+    {%- if include.s.date and include.s.date != "" %}<span class="project-date sr-card-date">{{ include.s.date | escape }}</span>{% endif -%}
+  </div>
+  <div class="project-desc sr-card-desc">{%- if include.s.description and include.s.description != "" %}<p>{{ include.s.description | escape }}</p>{% endif %}</div>
+  {%- if include.s.tags and include.s.tags.size > 0 %}<div class="project-tags">{% for t in include.s.tags %}<span>{{ t | escape }}</span>{% endfor %}</div>{% endif %}
+  <div class="project-links">
+    <a class="project-link sr-card-open" href="{{ sc_url }}" aria-label="{{ stp.page_open_label | default: 'Open' | escape }}: {{ include.s.title | escape }}"><span data-sr-text="open">{{ stp.page_open_label | default: "Open" }}</span> <span class="pl-arrow">&rarr;</span></a>
+    {%- if sc_first %}<a class="project-link sr-card-start" href="{{ sc_first.url | relative_url }}"><span data-sr-text="start">{{ stp.page_start_label | default: "Start reading" }}</span> <span class="pl-arrow">&rarr;</span></a>{% endif -%}
+  </div>
+</div>

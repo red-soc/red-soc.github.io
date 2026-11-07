@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{%- assign stp = site.appearance.series_page | default: site.appearance.series -%}
+{%- assign s = nil -%}
+{%- for x in site.data.series.items -%}{%- if x.id == page.series_id -%}{%- assign s = x -%}{%- endif -%}{%- endfor -%}
+<article class="page-card sr-page">
+  {%- if s %}
+  {%- assign n = 0 -%}{%- assign sr_first = nil -%}
+  {%- for f in s.posts -%}{%- assign sk = "_posts/" | append: f -%}{%- assign sp = site.posts | where: "path", sk | first -%}{%- if sp -%}{%- assign n = n | plus: 1 -%}{%- unless sr_first -%}{%- assign sr_first = sp -%}{%- endunless -%}{%- endif -%}{%- endfor -%}
+  {%- assign s_art = s.art_style | default: "" -%}{%- assign s_bg = s.art_bg | default: "" -%}{%- assign s_deco = s.art_deco | default: "" -%}
+  {%- if stp.page_images != false %}
+  <div class="project-card sr-hero" data-idx="0"{% if s_art != "" %} data-art="{{ s_art | escape }}"{% endif %}{% if s_bg != "" %} data-artbg="{{ s_bg | escape }}"{% endif %}{% if s_deco != "" %} data-artdeco="{{ s_deco | escape }}"{% endif %}{% if s.art_draw and s.art_draw != "" %} data-artdraw="{{ s.art_draw | escape }}"{% endif %}{% if s.art_label and s.art_label != "" %} data-artlabel="{{ s.art_label | escape }}"{% endif %}{% if s.art_color and s.art_color != "" %} data-artown="1"{% endif %} style="--proj-img-h: var(--sr-hero-h, {{ stp.page_hero_height | default: 220 }}px); --proj-img-fit: {% if s.art_fit == "cover" or s.art_fit == "contain" %}{{ s.art_fit }}{% else %}{{ stp.page_image_fit | default: 'cover' }}{% endif %};{% if s.art_color and s.art_color != "" %} --art-c: {{ s.art_color | escape }};{% endif %}">
+    {% capture sr_sub %}{{ n }} part{% if n != 1 %}s{% endif %}{% endcapture %}{% include series-thumb.html s=s sub=sr_sub hero=true %}
+  </div>
+  {%- endif %}
+  <h1 class="entry-title">{{ page.title }}</h1>
+  <div class="project-meta sr-page-meta">
+    <span class="project-status status-featured sr-page-count">{{ n }} part{% if n != 1 %}s{% endif %}</span>
+    {%- if s.featured %}<span class="project-status status-featured">Featured</span>{% endif -%}
+    {%- if s.status and s.status != "" %}<span class="project-status status-{{ s.status | slugify }}">{{ s.status | escape }}</span>{% endif -%}
+  </div>
+  {%- if s.description and s.description != "" %}<p class="sr-page-desc">{{ s.description | escape }}</p>{% endif %}
+  {%- if s.tags and s.tags.size > 0 %}<div class="project-tags">{% for t in s.tags %}<span>{{ t | escape }}</span>{% endfor %}</div>{% endif %}
+  <ol class="sr-list sr-page-list">
+    {%- assign n = 0 -%}
+    {%- for f in s.posts -%}{%- assign sk = "_posts/" | append: f -%}{%- assign sp = site.posts | where: "path", sk | first -%}
+    {%- if sp -%}{%- assign n = n | plus: 1 %}
+    <li class="sr-li"><span class="sr-num">{{ n }}</span><a class="sr-li-title" href="{{ sp.url | relative_url }}">{{ sp.title | escape }}</a><span class="sr-li-date">{{ sp.date | date: "%b %-d, %Y" }}</span></li>
+    {%- endif -%}
+    {%- endfor %}
+  </ol>
+  {%- else %}
+  <h1 class="entry-title">{{ page.title }}</h1>
+  <p>This series is no longer available.</p>
+  {%- endif %}
+  <div class="sr-page-actions">
+    <a class="sr-btn sr-page-back" href="{{ '/series/' | relative_url }}"><span class="sr-btn-arrow">&larr;</span> <span data-sr-text="back">{{ stp.page_back_label | default: "All series" }}</span></a>
+    {%- if sr_first %}
+    <a class="sr-btn sr-page-start" href="{{ sr_first.url | relative_url }}"><span data-sr-text="start">{{ stp.page_start_label | default: "Start reading" }}</span> <span class="sr-btn-arrow">&rarr;</span></a>
+    {%- endif %}
+  </div>
+</article>

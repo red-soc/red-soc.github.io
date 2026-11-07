@@ -1,0 +1,16 @@
+<a class="archive-row" href="{{ include.post.url | relative_url }}">
+  <span class="archive-date">
+    <span class="ad ad-iso">{{ include.post.date | date: "%Y-%m-%d" }}</span>
+    <span class="ad ad-short">{{ include.post.date | date: "%b %-d, %Y" }}</span>
+    <span class="ad ad-long">{{ include.post.date | date: "%-d %B %Y" }}</span>
+    <span class="ad ad-dmy">{{ include.post.date | date: "%d/%m/%Y" }}</span>
+  </span>
+  <span class="archive-body">
+    <span class="archive-title">{{ include.post.title }}</span>
+    <span class="archive-excerpt">{{ include.post.excerpt | strip_html | normalize_whitespace | truncate: 170 }}</span>
+  </span>
+  {%- if include.post.categories.size > 0 %}
+  <span class="archive-cat">{{ include.post.categories | first }}</span>
+  {%- endif %}
+  <svg class="archive-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+</a>

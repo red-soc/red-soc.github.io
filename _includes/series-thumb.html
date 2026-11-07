@@ -1,0 +1,20 @@
+{%- assign stp = site.appearance.series_page | default: site.appearance.series -%}
+{%- assign ap = site.appearance.projects -%}
+{%- assign st_s = include.s -%}
+{%- assign st_ad = st_s.art_draw | default: "" -%}
+{%- assign st_draw = true -%}{%- if stp.page_default_art == false -%}{%- assign st_draw = false -%}{%- endif -%}
+{%- if st_ad == "on" -%}{%- assign st_draw = true -%}{%- elsif st_ad == "off" -%}{%- assign st_draw = false -%}{%- endif -%}
+{%- assign st_def = stp.page_default_image | default: "" -%}{%- if st_ad != "" -%}{%- assign st_def = "" -%}{%- endif -%}
+{%- if st_s.image and st_s.image != "" -%}
+{%- assign c0 = st_s.image | slice: 0 -%}
+<div class="project-thumb sr-thumb"><img src="{% if c0 == '/' %}{{ st_s.image | relative_url }}{% else %}{{ st_s.image }}{% endif %}" alt="{{ st_s.image_alt | default: st_s.title | escape }}" loading="lazy"{% if st_s.image_pos and st_s.image_pos != "" or st_s.image_zoom and st_s.image_zoom != "" %} style="{% if st_s.image_pos and st_s.image_pos != "" %}object-position: {{ st_s.image_pos | escape }};{% endif %}{% if st_s.image_zoom and st_s.image_zoom != "" %}transform: scale({{ st_s.image_zoom | escape }}); transform-origin: {{ st_s.image_pos | default: "50% 50%" | escape }};{% endif %}"{% endif %}></div>
+{%- elsif st_def != "" -%}
+{%- assign d0 = st_def | slice: 0 -%}
+<div class="project-thumb sr-thumb"><img src="{% if d0 == '/' %}{{ st_def | relative_url }}{% else %}{{ st_def }}{% endif %}" alt="{{ st_s.title | escape }}" loading="lazy"></div>
+{%- elsif st_draw -%}
+{%- assign st_text = st_s.art_text | default: stp.page_art_default_text | default: st_s.title -%}
+{%- assign st_sub = st_s.art_subtitle | default: stp.page_art_default_sub | default: include.sub -%}
+<div class="project-thumb sr-thumb is-art">{% include project-art.html text=st_text sub=st_sub alt=st_s.title %}</div>
+{%- else -%}
+<div class="project-thumb is-none" aria-hidden="true"></div>
+{%- endif -%}
